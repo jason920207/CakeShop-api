@@ -1,5 +1,13 @@
-class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
+# @Author: xiaojiezhang
+# @Date:   2019-01-28T18:03:06-05:00
+# @Last modified by:   xiaojiezhang
+# @Last modified time: 2019-01-30T06:41:05-05:00
+
+
+
+class ProductsController < OpenReadController
+  #before_action :set_product, only: [:show, :update, :destroy]
+  before_action :set_product, only: %i[update destroy]
 
   # GET /products
   def index
@@ -10,12 +18,14 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    render json: @product
+    render json: Product.find(params[:id])
   end
 
   # POST /products
   def create
-    @product = Product.new(product_params)
+    #@product = Product.new(product_params)
+    @product = current_user.products.build(product_params)
+
 
     if @product.save
       render json: @product, status: :created, location: @product
@@ -41,7 +51,9 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      #@product = Product.find(params[:id])
+      @product = current_user.products.find(params[:id])
+
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -1,6 +1,12 @@
-class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :destroy]
+# @Author: xiaojiezhang
+# @Date:   2019-01-28T18:03:06-05:00
+# @Last modified by:   xiaojiezhang
+# @Last modified time: 2019-01-30T06:40:25-05:00
 
+
+
+class OrdersController < OpenReadController
+  before_action :set_order, only: %i[update destroy]
   # GET /orders
   def index
     @orders = Order.all
@@ -10,12 +16,13 @@ class OrdersController < ApplicationController
 
   # GET /orders/1
   def show
-    render json: @order
+    render json: Order.find(params[:id])
   end
 
   # POST /orders
   def create
-    @order = Order.new(order_params)
+    #@order = Order.new(order_params)
+    @order = current_user.orders.build(example_params)
 
     if @order.save
       render json: @order, status: :created, location: @order
@@ -41,7 +48,8 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      #@order = Order.find(params[:id])
+      @order = current_user.orders.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
