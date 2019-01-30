@@ -1,7 +1,7 @@
 # @Author: xiaojiezhang
 # @Date:   2019-01-28T18:03:06-05:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-29T16:06:33-05:00
+# @Last modified time: 2019-01-30T06:36:18-05:00
 
 
 
@@ -17,13 +17,13 @@ class CustomersController < OpenReadController
 
   # GET /customers/1
   def show
-    render json: @customer
+    render json: Customer.find(params[:id])
   end
 
   # POST /customers
   def create
-    @customer = Customer.new(customer_params)
-    #@customer = current_user.customers.build(customer_params)
+    #@customer = Customer.new(customer_params)
+    @customer = current_user.customers.build(customer_params)
 
 
     if @customer.save
@@ -50,8 +50,8 @@ class CustomersController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
-      #@customer = current_user.customers.find(params[:id])
+      #@customer = Customer.find(params[:id])
+      @customer = current_user.customers.find(params[:id])
 
     end
 

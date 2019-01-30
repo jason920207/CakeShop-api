@@ -1,7 +1,7 @@
 # @Author: xiaojiezhang
 # @Date:   2019-01-28T18:03:06-05:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-29T15:47:34-05:00
+# @Last modified time: 2019-01-30T06:37:55-05:00
 
 
 
@@ -17,7 +17,7 @@ class CategoriesController < OpenReadController
 
   # GET /categories/1
   def show
-    render json: @category
+    render json: Category.find(params[:id])
   end
 
   # POST /categories

@@ -1,12 +1,12 @@
 # @Author: xiaojiezhang
 # @Date:   2019-01-28T18:03:06-05:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-29T16:06:47-05:00
+# @Last modified time: 2019-01-30T06:41:05-05:00
 
 
 
 class ProductsController < OpenReadController
-  before_action :set_product, only: [:show, :update, :destroy]
+  #before_action :set_product, only: [:show, :update, :destroy]
   before_action :set_product, only: %i[update destroy]
 
   # GET /products
@@ -18,7 +18,7 @@ class ProductsController < OpenReadController
 
   # GET /products/1
   def show
-    render json: @product
+    render json: Product.find(params[:id])
   end
 
   # POST /products
