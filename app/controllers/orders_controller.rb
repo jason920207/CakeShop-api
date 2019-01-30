@@ -1,5 +1,11 @@
-class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :update, :destroy]
+# @Author: xiaojiezhang
+# @Date:   2019-01-28T18:03:06-05:00
+# @Last modified by:   xiaojiezhang
+# @Last modified time: 2019-01-29T16:07:11-05:00
+
+
+
+class OrdersController < OpenReadController
 
   # GET /orders
   def index

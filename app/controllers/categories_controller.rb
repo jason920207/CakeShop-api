@@ -1,5 +1,12 @@
-class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+# @Author: xiaojiezhang
+# @Date:   2019-01-28T18:03:06-05:00
+# @Last modified by:   xiaojiezhang
+# @Last modified time: 2019-01-29T15:47:34-05:00
+
+
+
+class CategoriesController < OpenReadController
+  before_action :set_category, only: %i[update destroy]
 
   # GET /categories
   def index
@@ -15,7 +22,8 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    @category = Category.new(category_params)
+#    @category = Category.new(category_params)
+    @category = current_user.categorys.build(category_params)
 
     if @category.save
       render json: @category, status: :created, location: @category
@@ -41,7 +49,8 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+#      @category = current_user.examples.find(params[:id])
+      @category = current_user.categories.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
