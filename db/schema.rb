@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_142459) do
+ActiveRecord::Schema.define(version: 2019_01_31_012220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_142459) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 2019_01_29_142459) do
     t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "examples", force: :cascade do |t|
@@ -41,11 +45,13 @@ ActiveRecord::Schema.define(version: 2019_01_29_142459) do
   create_table "orders", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "product_id"
-    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.integer "amount"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -57,7 +63,9 @@ ActiveRecord::Schema.define(version: 2019_01_29_142459) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.bigint "user_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,8 +78,12 @@ ActiveRecord::Schema.define(version: 2019_01_29_142459) do
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
+  add_foreign_key "categories", "users"
+  add_foreign_key "customers", "users"
   add_foreign_key "examples", "users"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "users"
 end

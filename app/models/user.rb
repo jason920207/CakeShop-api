@@ -1,7 +1,7 @@
 # @Author: xiaojiezhang
 # @Date:   2018-10-02T19:52:46-04:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-29T15:54:05-05:00
+# @Last modified time: 2019-01-30T21:24:10-05:00
 
 
 
@@ -12,6 +12,6 @@ class User < ApplicationRecord
   has_many :examples
   has_many :customers
   has_many :products
-  has_many :categories
   has_many :orders
+  has_many :categories
 end

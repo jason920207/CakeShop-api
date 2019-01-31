@@ -1,7 +1,7 @@
 # @Author: xiaojiezhang
 # @Date:   2019-01-28T18:03:06-05:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-30T06:40:25-05:00
+# @Last modified time: 2019-01-30T13:10:40-05:00
 
 
 
@@ -22,7 +22,7 @@ class OrdersController < OpenReadController
   # POST /orders
   def create
     #@order = Order.new(order_params)
-    @order = current_user.orders.build(example_params)
+    @order = current_user.orders.build(order_params)
 
     if @order.save
       render json: @order, status: :created, location: @order
@@ -54,6 +54,6 @@ class OrdersController < OpenReadController
 
     # Only allow a trusted parameter "white list" through.
     def order_params
-      params.require(:order).permit(:customer_id, :product_id, :date)
+      params.require(:order).permit(:customer_id, :product_id, :amount)
     end
 end

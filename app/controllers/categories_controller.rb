@@ -1,7 +1,7 @@
 # @Author: xiaojiezhang
 # @Date:   2019-01-28T18:03:06-05:00
 # @Last modified by:   xiaojiezhang
-# @Last modified time: 2019-01-30T06:37:55-05:00
+# @Last modified time: 2019-01-30T21:30:50-05:00
 
 
 
@@ -22,8 +22,8 @@ class CategoriesController < OpenReadController
 
   # POST /categories
   def create
-#    @category = Category.new(category_params)
-    @category = current_user.categorys.build(category_params)
+    #@category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
 
     if @category.save
       render json: @category, status: :created, location: @category
@@ -49,7 +49,7 @@ class CategoriesController < OpenReadController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-#      @category = current_user.examples.find(params[:id])
+      #@category = Category.find(params[:id])
       @category = current_user.categories.find(params[:id])
     end
 
