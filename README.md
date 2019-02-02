@@ -1,6 +1,17 @@
 Online shop dashboard Client
 
-API: Deployed: https://jason920207.github.io/Cake-dashboard/ Github: https://github.com/jason920207/CakeShop-api
+
+Yoga App API
+
+Client:
+
+Github: https://github.com/jason920207/Cake-dashboard
+Deployed: https:https://jason920207.github.io/Cake-dashboard/\
+
+API:
+
+Deployed: https://jason920207.github.io/Cake-dashboard/
+Github: https://github.com/jason920207/CakeShop-api\
 
 Built with:
 
